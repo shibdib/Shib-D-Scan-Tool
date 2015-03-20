@@ -1,0 +1,27 @@
+body {
+	background-color: #333333;
+	color: #333333;
+}
+h2 {
+	color: #ffffff
+	}
+p {
+	color: #ffffff
+	}
+.navbar .nav > li > a {
+  color:#ffffff;
+   text-shadow:#FFFFFF 0 0 0;
+}
+.navbar-text {
+  color:#ffffff;
+}
+.navbar .brand {
+  color:#ffffff;
+  text-shadow:#FFFFFF 0 0 0;
+  padding:12px 20px;
+}
+.navbar-inner {
+  background-image:none;
+  border:1px solid #000000;
+  background-color:#191919;
+}
