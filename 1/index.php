@@ -17,7 +17,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>DScan Reporter</title>
+    <title>Shib-D-Scan-Tool</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -269,7 +269,7 @@ function bitly_url_shorten($long_url, $access_token, $domain)
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="<?php if ($isView) { echo $_SERVER['PHP_SELF']; } else { echo '#'; } ?>">
-          <?php if ($isView) { echo 'Submit a New Scan'; } else { echo 'MAMBA Scan Tool'; } ?>
+          <?php if ($isView) { echo 'Submit a New Scan'; } else { echo 'Shibdib Scan Tool'; } ?>
           </a> 
           
           <!-- BEGIN: Hide if not in display mode -->  
