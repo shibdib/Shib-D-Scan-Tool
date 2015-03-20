@@ -31,3 +31,9 @@ Original design goes to recon-null, tool stagnated a bit but it's back up to snu
 - Lots of bug testing
 - Removed some unnecessary bloat
 - Fixed some interface issues
+
+# Screenshots
+
+http://i.imgur.com/lVU8Ggl.png
+
+http://i.imgur.com/Sg38uRr.png
