@@ -19,6 +19,15 @@ Current as of 20March2015
 - A Web Server
 
 
-# Credits
+# Changes
 
 Original design goes to recon-null, tool stagnated a bit but it's back up to snuff with an all new interface and some php optimizations.
+
+- IGB headers fix for apache
+- Updated ship listing
+- Updated theme
+- Cleaned up some of the PHP to create a more user friendly interface
+- Enabled out of game browser support
+- Lots of bug testing
+- Removed some unnecessary bloat
+- Fixed some interface issues
