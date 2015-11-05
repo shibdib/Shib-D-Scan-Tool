@@ -369,10 +369,14 @@
   input,
   textarea,
   .uneditable-input {
-    margin-left: 0;
-  }
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+	}
   .controls-row [class*="span"] + [class*="span"] {
-    margin-left: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   input.span12,
   textarea.span12,

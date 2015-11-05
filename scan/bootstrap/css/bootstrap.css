@@ -223,9 +223,9 @@ textarea {
 
 body {
 	margin: 0;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 12px;
-	line-height: 14px;
+	font-family: sans-serif;
+	font-size: 14px;
+	line-height: 13px;
 	color: #333333;
 	background-color: #FFFFFF;
 }
@@ -1949,10 +1949,10 @@ legend + .control-group {
 }
 
 .form-horizontal .controls {
-  *display: inline-block;
-  *padding-left: 20px;
-  margin-left: 180px;
-  *margin-left: 0;
+	margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
 }
 
 .form-horizontal .controls:first-child {
@@ -4349,7 +4349,7 @@ input[type="submit"].btn.btn-mini {
 	margin-left: -20px;
 	font-size: 20px;
 	font-weight: bolder;
-	color: #777777;
+	color: #000000;
 	text-shadow: 0 1px 0 #ffffff;
 }
 
@@ -4360,7 +4360,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-text {
 	margin-bottom: 0;
 	line-height: 40px;
-	color: #990000;
+	color: #000000;
 }
 
 .navbar-link {
@@ -4540,7 +4540,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > li > a {
 	float: none;
 	padding: 10px 15px 10px;
-	color: #990000;
+	color: #000000;
 	text-decoration: none;
 	text-shadow: 0 1px 0 #ffffff;
 }

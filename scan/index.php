@@ -1,23 +1,25 @@
 <?php
-# This file is part of Shib DSCAN Tool.
+# This file is part of MAMBA Dscan Tool.
 #
-# It uses a heavily modified version of DScan Reporter.
+# DScan Reporter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# DScan Reporter and Shib DSCAN Tool is distributed in the hope that it will be useful,
+# DScan Reporter is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
 #
+# You should have received a copy of the GNU Affero General Public License
+# along with DScan Reporter.  If not, see <http://www.gnu.org/licenses/>.
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Shib-D-Scan-Tool</title>
+    <title>MAMBA D-Scan Tool</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -31,18 +33,6 @@
       }
     </style>
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="bootstrap/css/shib.css?version=11" rel="stylesheet" type="text/css">  
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-       
-    <!-- Request trust from the IGB -->
-    <script type="text/javascript">
-    
-       CCPEVE.requestTrust(<?php echo '\'http://'.$_SERVER['SERVER_NAME'].'\''; ?>);
-    
-    </script>
   </head> 
   
   <?php
@@ -92,10 +82,15 @@ function bitly_url_shorten($long_url, $access_token, $domain)
         if (array_key_exists('HTTP_EVE_TRUSTED', $_SERVER))
         {
             if ($_SERVER['HTTP_EVE_TRUSTED'] != 'Yes')
-            {
+            { 
+		
+		
+				
+					
                 // No, tell the user
                 //die ('Please Use The IGB With Trust Enabled For All The Features');
-            }        
+            }
+
         }
         //else
         //{
@@ -170,15 +165,6 @@ function bitly_url_shorten($long_url, $access_token, $domain)
             {
                 Echo("You must have at least one ship on DScan.");
             }            
-             
-            // Get IGB headers
-            $igb_headers = array();            
-            $igb_headers['charID'] = $_SERVER['HTTP_EVE_CHARID'];
-            $igb_headers['charName'] = $_SERVER['HTTP_EVE_CHARNAME'];
-            $igb_headers['systemID'] = $_SERVER['HTTP_EVE_SOLARSYSTEMID'];
-            $igb_headers['systemName'] = $_SERVER['HTTP_EVE_SOLARSYSTEMNAME'];
-			$igb_headers['regionName'] = $_SERVER['HTTP_EVE_REGIONNAME'];
-            $igb_json = json_encode($igb_headers);
             
             // Sort the ship arrays
 			rnatsort($ship_names);
@@ -269,40 +255,10 @@ function bitly_url_shorten($long_url, $access_token, $domain)
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="<?php if ($isView) { echo $_SERVER['PHP_SELF']; } else { echo '#'; } ?>">
-          <?php if ($isView) { echo 'Submit a New Scan'; } else { echo 'Shibdib Scan Tool'; } ?>
+          <?php if ($isView) { echo ''; } else { echo 'MAMBA Scan Tool'; } ?>
           </a> 
           
           <!-- BEGIN: Hide if not in display mode -->  
-          
-            <ul class="nav" <?php if (!$isView) { echo ' style="display:none" '; }?>>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  Reported by : <?php echo $igb_data->charName; ?>
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="#" onclick="CCPEVE.showInfo(1377, <?php echo $igb_data->charID; ?>);">Show Info 'In-game Only'</a></li>
-                  <li><a href="#" onclick="CCPEVE.startConversation(<?php echo $igb_data->charID; ?>);">Convo 'In-game Only'</a></li>
-                  <li><a href="#" onclick="CCPEVE.addContact(<?php echo $igb_data->charID; ?>);">Add Contact 'In-game Only'</a></li>
-                  
-                </ul>
-              </li>
-            </ul>
-            
-            <ul class="nav" <?php if (!$isView) { echo ' style="display:none" '; }?>>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  From System : <?php echo $igb_data->systemName; ?>
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="#" onclick="CCPEVE.showMap(<?php echo $igb_data->systemID; ?>);">Show On Map 'In-game Only'</a></li>
-                  <li><a href="#" onclick="CCPEVE.showInfo(5, <?php echo $igb_data->systemID; ?>);">Show Info 'In-game Only'</a></li>
-                  <li><a href="#" onclick="CCPEVE.setDestination(<?php echo $igb_data->systemID; ?>);">Set Dest 'In-game Only'</a></li>                  
-                  <li><a href="<?php echo 'http://evemaps.dotlan.net/map/'.$igb_data->regionName.'/'.$igb_data->systemName; ?>" target="_blank">Show on DOTLAN</a></li>     
-                </ul>
-              </li>
-            </ul>
             
             <p class="navbar-text" <?php if (!$isView) { echo ' style="display:none" '; }?>>At <?php echo gmdate("H:i", $dateReported);?> EVE Time</p>            
                    
@@ -343,7 +299,30 @@ function bitly_url_shorten($long_url, $access_token, $domain)
       <!-- BEGIN: Display DScan from DB -->
      
       <div class="row" <?php if (!$isView) { echo ' style="display:none" '; }?>>
-        <div class="span4" color="#333333">
+	  <div align="center">
+		<?php
+		$actualurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		
+		//gets the data from a URL  
+function get_tiny_url($url)  {  
+	$ch = curl_init();  
+	$timeout = 5;  
+	curl_setopt($ch,CURLOPT_URL,'http://tinyurl.com/api-create.php?url='.$url);  
+	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);  
+	curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);  
+	$data = curl_exec($ch);  
+	curl_close($ch);  
+	return $data;  
+}
+
+//test it out!
+$new_url = get_tiny_url($actualurl);
+
+//returns http://tinyurl.com/65gqpp
+echo "   <button type='button' class='list-group-item'><a href='$new_url'>Copy the TinyUrl For This Scan</a></button>"
+?>
+	   </div>
+		<div class="span4" color="#333333">
           <h2 align="center">Ships</h2>
             <div class="row">
                 <table class="table span4 table-striped well">
@@ -395,21 +374,17 @@ function bitly_url_shorten($long_url, $access_token, $domain)
                </table> 
             </div>
         </div>
-		<div align="center"><a href="#" id="link" target="_blank">Copy and Share Scan Results</a>
-
-          <script type="text/javascript">
-window.onload = function(){
-    document.getElementById("link").href = window.location.toString();
-}
-          </script>
-	   </div>
-      </div>
+		 </div>
+		
+     
       
      <!--  END: Display DScan from DB -->
       
       <hr>
        <footer>
-        <p>&copy; 2015 <a onclick="CCPEVE.showInfo(1377,759440135)" href="#">Mr Twinkie</a>, <a onclick="CCPEVE.showInfo(2,98293422)" href="#">Hostess Industries</a>. <br/>ISK Donations Accepted.</p>
+        <p>&copy; 2015 <a onclick="CCPEVE.showInfo(1377,759440135)" href="#">Mr Twinkie</a>, <a onclick="CCPEVE.showInfo(2,875512489)" href="#">Black Serpent Technologies</a>. <br/>ISK Donations Accepted.<br/><a class="brand" href="<?php if ($isView) { echo $_SERVER['PHP_SELF']; } else { echo '#'; } ?>">
+          <?php if ($isView) { echo 'Submit a New Scan'; } else { echo 'Shibdib Scan Tool'; } ?>
+          </a> </p>
       </footer>
 
     </div> <!-- /container -->
